@@ -1,5 +1,5 @@
-### BookStack Random Mailer
+## BookStack Random Mailer
 
-## This is a minor side project for mailing a random bookstack article to myself every morning
+### This is a minor side project for mailing a random bookstack article to myself every morning
 
-## Cheers!
+#### Cheers!
