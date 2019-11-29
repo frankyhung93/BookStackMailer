@@ -14,9 +14,17 @@ require 'connect_db.php';
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-// Get the page
-$page = getRandomPage();
-$page['html'] = '<p>View on BookStack (Search Page): <a href="'.$ini['search_url'].urlencode('"'.$page['name'].'"').'" target="_blank">Link</a></p><br>' . $page['html'];
+// Construct the mail content
+$html = "<h1>Daily Digest</h1>";
+$html .= "<h4>Revisiting articles and knowledges</h3>";
+$html .= "<br><hr><br>";
+$pagecount = 4;
+for ($i=0; $i < $pagecount; $i++) {
+	$page = getRandomPage();
+	$html .= "<h3>{$page['name']}</h3>";
+	$html .= '<p><a href="'.$ini['search_url'].urlencode('"'.$page['name'].'"').'" target="_blank">Read More (Search Page)</a></p>';
+	$html .= '<p>~~~</p>';
+}
 try {
     //Server settings
     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -35,8 +43,8 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = $page['name'];
-    $mail->Body    = $page['html'];
+    $mail->Subject = "Treasure Hoard's Daily Digest";
+    $mail->Body    = $html;
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
     $mail->send();
