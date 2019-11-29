@@ -1,0 +1,5 @@
+# composer libraries
+vendor/
+
+# app config file
+app.ini
